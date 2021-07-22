@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Etsy Customs Form</title>
+  </head>
+  <script src="getOrderData.js"></script>
+  <script src="mustache.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .center {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+    }
+    p {
+      margin: 0;
+    }
+    td {
+      padding: 2px;
+    }
+    @media print {
+      @page {
+        margin-top: 0in;
+        margin-bottom: 0in;
+      }
+    }
+  </style>
+  <body>
+    <p class="center">
+      <i><strong>(see regulation 4)</strong></i>
+    </p>
+    <p class="center">
+      <i><strong>Postal Bill of Export - I (PBE -I) For</strong></i>
+    </p>
+    <p class="center">
+      <i><strong>Export of goods through E-Commerce</strong></i>
+    </p>
+    <p class="center">
+      <i><strong>(To be submitted in duplicate)</strong></i>
+    </p>
+    <table>
+      <tr>
+        <td rowspan="2">Bill of Export No. and date.</td>
+        <td rowspan="2">Foreign Post office code</td>
+        <td rowspan="2">Name of Exporter</td>
+        <td rowspan="2">Address of Exporter</td>
+        <td rowspan="2">
+          IEC <br />
+          IE Code:
+        </td>
+        <td rowspan="2">State Code</td>
+        <td rowspan="2">GSTIN or as applicable</td>
+        <td rowspan="2">AD code (if applicable)</td>
+        <td colspan="2">Details of Customs Broker</td>
+      </tr>
+      <tr>
+        <td>License No.</td>
+        <td>Name and address</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>INMAA5</td>
+        <td>INDIAN CRAFTSVILLE</td>
+        <td>
+          Plot No.47, Door No.1/445, Mathura Apts S-2, <br />
+          Karthikeyapuram 3rd St. Madipakkam, <br />
+          Chennai - 600091
+        </td>
+        <td>AMOPD7305B</td>
+        <td>33</td>
+        <td>33AMOPD7305B1ZK</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="9">
+          <p class="center">
+            <strong>Declations</strong>
+          </p>
+        </td>
+        <td>Yes/No as applicable</td>
+      </tr>
+      <tr>
+        <td>1.</td>
+        <td colspan="8">
+          We declare that we intend to claim rewards under Merchandise Exports
+          from India Scheme (MEIS) (for export through Chennai / Mumbai / Delhi
+          FPO only).
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>2.</td>
+        <td colspan="8">
+          We declare that we intend to zero rate our exports under Section 16 of
+          IGST Act.
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td colspan="8">
+          We declare that the goods are exempted under CGST/SGST/UTGST/IGST
+          Acts.
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="10">
+          We hereby declare that the contents of this postal bill of export are
+          true and correct in every respect.
+          <br />
+          <br />
+          (Signature of the Exporter / Authorized agent)
+        </td>
+      </tr>
+      <tr>
+        <td colspan="10">
+          Examination order and report
+          <br />
+          <br />
+          <div style="text-align: right">
+            Export Order: Signature of officer of Customs along with stamp and
+            date.
+          </div>
+        </td>
+      </tr>
+    </table>
+    <br />
+    <div id="target"></div>
+    <script id="template" type="x-tmpl-mustache">
+      <table>
+        <tr>
+          <td colspan="14">
+            <p class="center">
+              <strong>Details of parcel</strong>
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="width: 3%;">SI.No</td>
+          <td colspan="2" style="width: 20%;">Consignee details</td>
+          <td colspan="4" style="width: 20%;">Product details</td>
+          <td colspan="3" style="width: 22%;">Details of Parcel</td>
+          <td colspan="4" style="width: 35%;">E-commerce particulars</td>
+        </tr>
+        <tr>
+          <td rowspan="2">Name and Address</td>
+          <td rowspan="2">Country of destination</td>
+          <td rowspan="2">Description</td>
+          <td rowspan="2">CTH</td>
+          <td colspan="2">Quantity</td>
+          <td rowspan="2">Invoice no. and date</t>
+          <td colspan="2">Weight</td>
+          <td rowspan="2">URL (Name) of Website</td>
+          <td rowspan="2">Payment <br>transaction ID</td>
+          <td rowspan="2">SKU No.</td>
+          <td rowspan="2">Postal tracking number</td>
+        </tr>
+        <tr>
+          <td>Unit <br>(pieces, litres, <br>kgs, meters)</td>
+          <td>Number</td>
+          <td>Gross</td>
+          <td>Net</td>
+        </tr>
+        <tr>
+          <td>01</td>
+          <td>
+            {{ shipTo.name }}, <br>
+            {{ shipTo.address }}, <br>
+            {{ shipTo.city }}, <br>
+            {{ shipTo.state }} - {{ shipTo.zip }} <br>
+            {{ shipTo.country }}
+          </td>
+          <td>
+            {{ shipTo.country }}
+          </td>
+          <td>As per the invoice</td>
+          <td>71171990</td>
+          <td>Box</td>
+          <td><input type="text" style="width: 25%;"></td>
+          <td><textarea rows="2" cols="15">IC &#013;&#010;{{ orderDate }}</textarea></td>
+          <td></td>
+          <td></td>
+          <td>www.etsy.com/shop/<br>indiancraftsville</td>
+          <td>
+            {{ receiptNumber }}
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+      <br>
+      <table>
+        <tr>
+          <td colspan="4" style="width: 25%;">
+            <p class="center">Assessable value under section 14 of the Customs Act</p>
+          </td>
+          <td colspan="4" style="width: 25%;">
+            <p class="center">Details of Tax invoice or commercial<br>invoice (whichever applicable)</p></td>
+          <td colspan="9" style="width: 40%;">
+            <p class="center">Details of duty/tax</p></td>
+          <td rowspan="2" colspan="2" style="width: 10%;"><p class="center">Total</p></td>
+        </tr>
+        <tr>
+          <td rowspan="3">FOB</td>
+          <td rowspan="3">Currency</td>
+          <td rowspan="3">Exchange rate</td>
+          <td rowspan="3">Amount in INR</td>
+          <td rowspan="3">H.S code</td>
+          <td colspan="2">Invoice details</td>
+          <td rowspan="3">Value</td>
+          <td colspan="4">Customs duties</td>
+          <td colspan="5">GST details</td>
+        </tr>
+        <tr>
+          <td rowspan="2">Invoice no. and date</td>
+          <td rowspan="2">SI.No.of item in invoice</td>
+          <td colspan="2">Export duty</td>
+          <td colspan="2">Cess</td>
+          <td colspan="2">IGST<br>(if applicable)</td>
+          <td colspan="2">Compensation Cess<br>(if applicable)</td>
+          <td rowspan="2">LUT/bond details<br>(if applicable)</td>
+          <td rowspan="2">duties</td>
+          <td rowspan="2">cess</td>
+        </tr>
+        <tr>
+          <td>rate</td>
+          <td>amount</td>
+          <td>rate</td>
+          <td>amount</td>
+          <td>rate</td>
+          <td>amount</td>
+          <td>rate</td>
+          <td>amount</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Rupees</td>
+          <td></td>
+          <td><input type="text" value="Rs." style="width: 50%;" ></td>
+          <td></td>
+          <td><textarea rows="2" cols="11">IC &#013;&#010;{{ orderDate }}</textarea> </td>
+          <td><input type="text" value="1" style="width: 25%;"></td>
+          <td><input type="text" value="Rs." style="width: 50%;"></td>
+          <td>NIL</td>
+          <td>NIL</td>
+          <td>NIL</td>
+          <td>NIL</td>
+          <td>NIL</td>
+          <td>NIL</td>
+          <td>NIL</td>
+          <td>NIL</td>
+          <td>NIL</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </table>
+    </script>
+  </body>
+</html>

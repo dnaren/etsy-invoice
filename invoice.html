@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Etsy Invoice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="getOrderData.js"></script>
+    <script src="mustache.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="target">Loading...</div>
+    <script id="template" type="x-tmpl-mustache">
+      <div>
+        <h1>Tax Invoice</h1>
+        <h2>
+          Indian Craftsville
+        </h2>
+        <table>
+          <tr>
+            <td>
+              D.Geetha, <br>
+              Plot No.47, Door No.1/445, Mathura Apts S-2, <br>
+              Karthikeyapuram 3rd St. Madipakkam, <br>
+              Chennai, Tamil Nadu - 600091, India
+            </td>
+            <td>
+              Phone no: 91-9445264999
+            </td>
+            <td>
+              Email: geetha.dorairaj12@gmail.com
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>GSTIN - </strong>
+              33AMOPD7305B1ZK
+            </td>
+            <td>
+              <strong>IEC - </strong>
+              AMOPD7305B
+            </td>
+            <td>
+              Website: www.etsy.com/shop/IndianCraftsville
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Bill To: {{ shipTo.name }} <br>
+              {{ shipTo.address }} <br>
+              {{ shipTo.city }} <br>
+              {{ shipTo.state }} - {{ shipTo.zip }} <br>
+              {{ shipTo.country }}
+            </td>
+            <td colspan="2">
+              Invoice #: <input type="text" value="IC"> <br>
+              Etsy Invoice #: {{ receiptNumber }} <br>
+              <input type="text" value="{{ orderDate }}">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">
+              <strong>Invoice For: {{ shipTo.name }}</strong>
+            </td>
+          </tr>
+        </table>
+        <h3>Order Items</h3>
+        <table>
+          <tr>
+            <th>
+              <strong>Item #</strong>
+            </th>
+            <th>
+              <strong>Description</strong>
+            </th>
+            <th>
+              <strong>Quantity</strong>
+            </th>
+            <th>
+              <strong>Unit Price</strong>
+            </th>
+            <th>
+              <strong>Discount</strong>
+            </th>
+            <th>
+              <strong>Price</strong>
+            </th>
+          </tr>
+          {{#orderItems}}
+          <tr>
+            <td>{{itemNumber}}</td>
+            <td>
+              <textarea rows="3" cols="30">Silk thread bangles - Imitation fancy jewelry - </textarea>
+            </td>
+            <td>{{quantity}}</td>
+            <td><input type="text" value="Rs." ></td>
+            <td><input type="text" value="NA" ></td>
+            <td><input type="text" value="Rs." ></td>
+          </tr>
+          {{/orderItems}}
+          <tr>
+            <td class="noborder"></td>
+            <td class="noborder"></td>
+            <td class="noborder"></td>
+            <td class="noborder"></td>
+            <td>Invoice Subtotal</td>
+            <td>
+              <input type="text" value="Rs.">
+            </td>
+          </tr>
+          <tr>
+            <td class="noborder"></td>
+            <td class="noborder"></td>
+            <td class="noborder"></td>
+            <td class="noborder"></td>
+            <td>GST @ 3%</td>
+            <td>
+              <input type="text" value="Rs.">
+            </td>
+          </tr>
+          <tr>
+            <td class="noborder" colspan="4">
+              <textarea rows="1" cols="70">In words - </textarea>
+            </td>
+            <td><strong>TOTAL</strong></td>
+            <td><input type="text" value="Rs."></td>
+          </tr>
+        </table>
+      </div>
+    </script>
+  </body>
+</html>

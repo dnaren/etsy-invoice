@@ -1,0 +1,34 @@
+h3 {
+  margin: 8px;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  border: 1px solid #000;
+  text-align: left;
+  padding: 8px;
+}
+input {
+  font-size: 95%;
+  background-color: yellow;
+}
+textarea {
+  resize: none;
+  background-color: yellow;
+}
+@media print {
+  input,
+  textarea {
+    border: none;
+  }
+  @page {
+    margin-top: 0.5in;
+    margin-bottom: 0.5in;
+  }
+}
+.noborder {
+  border: 0px;
+}

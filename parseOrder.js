@@ -12,7 +12,7 @@ data.orderDate = getOrderDate();
 data;
 
 function getReceiptNumber() {
-  var receiptText = document.querySelector('#order-details-order-info a');
+  var receiptText = document.querySelector("#order-details-order-info > a:nth-child(1)");
   if (receiptText) {
     return receiptText.textContent;
   }
@@ -37,8 +37,19 @@ function getShipTo() {
     var shipTo = {};
     shipTo.name = addressDiv.getElementsByClassName('name')[0].innerText;
     shipTo.address = addressDiv.getElementsByClassName('first-line')[0].innerText;
+	
+	var secondLineElement = addressDiv.getElementsByClassName('second-line')[0];
+	if(secondLineElement){
+		shipTo.addressSecondLine = secondLineElement.innerText;
+	}
+	
     shipTo.city = addressDiv.getElementsByClassName('city')[0].innerText;
-    shipTo.state = addressDiv.getElementsByClassName('state')[0].innerText;
+	
+	var stateElement = addressDiv.getElementsByClassName('state')[0];
+	if(stateElement){
+		shipTo.state = stateElement.innerText;
+	}
+	
     shipTo.zip = addressDiv.getElementsByClassName('zip')[0].innerText;
     shipTo.country = addressDiv.getElementsByClassName('country-name')[0].innerText;
 

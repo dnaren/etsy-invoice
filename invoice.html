@@ -49,8 +49,10 @@
             <td>
               Bill To: {{ shipTo.name }} <br>
               {{ shipTo.address }} <br>
-              {{ shipTo.city }} <br>
-              {{ shipTo.state }} - {{ shipTo.zip }} <br>
+			  {{#shipTo.addressSecondLine}}
+				{{ shipTo.addressSecondLine }} <br>
+			  {{/shipTo.addressSecondLine}}
+              {{ shipTo.city }}, {{ shipTo.state }} {{ shipTo.zip }} <br>
               {{ shipTo.country }}
             </td>
             <td colspan="2">

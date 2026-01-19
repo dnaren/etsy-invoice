@@ -1,24 +1,41 @@
 {
   "name": "Etsy Invoice",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Etsy Custom Invoice",
-  "manifest_version": 2,
-  "minimum_chrome_version": "60",
+  "manifest_version": 3,
+  "minimum_chrome_version": "88",
   "icons": {
     "64": "logo64.png"
   },
-  "permissions":[
+  "permissions": [
+    "scripting",
     "activeTab",
-    "tabs"
+    "storage"
   ],
-  "browser_action": {
+  "host_permissions": [
+    "https://www.etsy.com/*"
+  ],
+  "action": {
     "default_icon": "logo64.png",
     "default_popup": "popup.html",
     "default_title": "Indian Craftsville Invoice Generator"
   },
-  "background":{
-    "scripts":[
-      "background.js"
-    ]
-  }
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "invoice.html",
+        "customsForm.html",
+        "parseOrder.js",
+        "getOrderData.js",
+        "mustache.min.js",
+        "styles.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
 }

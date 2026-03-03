@@ -18,7 +18,7 @@
   "action": {
     "default_icon": "logo64.png",
     "default_popup": "popup.html",
-    "default_title": "Indian Craftsville Invoice Generator"
+    "default_title": "The Little India Invoice Generator"
   },
   "background": {
     "service_worker": "background.js"
